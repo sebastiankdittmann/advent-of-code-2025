@@ -36,15 +36,17 @@ export function countDialPassingZero(currentNumber: number, direction: "L" | "R"
     return [currentNumber, timesPassingZero]
 }
 
-let currentNumber = 50
-let dialPassingZeroCount = 0
-const instructions = readMultilineTextFile(inputFilePath)
+if (require.main === module) {
+    let currentNumber = 50
+    let dialPassingZeroCount = 0
+    const instructions = readMultilineTextFile(inputFilePath)
 
-instructions.forEach((value) => {
-    const [direction, steps] = parseInstruction(value)
-    const [newNumber, timesPassingZero] = countDialPassingZero(currentNumber, direction, steps)
-    currentNumber = newNumber
-    dialPassingZeroCount = dialPassingZeroCount + timesPassingZero
-})
+    instructions.forEach((value) => {
+        const [direction, steps] = parseInstruction(value)
+        const [newNumber, timesPassingZero] = countDialPassingZero(currentNumber, direction, steps)
+        currentNumber = newNumber
+        dialPassingZeroCount = dialPassingZeroCount + timesPassingZero
+    })
 
-console.log(`Password: ${dialPassingZeroCount}`)
+    console.log(`Password: ${dialPassingZeroCount}`)
+}
